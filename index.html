@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	
+	<script src="js/jquery-2.1.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+    <title></title>
+
+    <script type="text/javascript">
+
+        var data_json = '[{"sightName":"泰安瀑布 ", "zone": "七堵區 ", "category":"風景區", "photoURL":"https://photo.travelking.com.tw/scenery/E97B704A-5067-4713-9C4C-C4D411D75521_e.jpg", "description":"泰安瀑布位於七堵南方的草濫山區，又稱草濫山瀑布，因過去交通不便，反而保留了純樸自然的景色，景致優美清麗，規畫有烤肉區露營區、戲水區及環山步道，為一大眾化的露營、踏青去處。自瀑布入口進入後，分成二條林蔭步道，左側步道沿溪闢建，略具原始叢林的面貌，循行可抵露營區及烤肉區；露營區因乏人使用，已顯荒蕪。若自入口循右側步道上行可抵泰安瀑布；瀑高約 20公尺，自山壁傾瀉而下，聚成一泓清潭，於此戲水，偶見水鳥佇立瀑旁岩石，非常可愛；沿著瀑布旁的環山步道繞行草濫山一周，還可做一次有身心健康的森林浴，享受茂林修竹的自然清新，實為躲避塵囂的理想去處。", "address":"基隆市七堵區泰安路"},{"sightName":"泰安瀑布 ", "zone": "七堵區 ", "category":"風景區", "photoURL":"https://photo.travelking.com.tw/scenery/E97B704A-5067-4713-9C4C-C4D411D75521_e.jpg", "description":"泰安瀑布位於七堵南方的草濫山區，又稱草濫山瀑布，因過去交通不便，反而保留了純樸自然的景色，景致優美清麗，規畫有烤肉區露營區、戲水區及環山步道，為一大眾化的露營、踏青去處。自瀑布入口進入後，分成二條林蔭步道，左側步道沿溪闢建，略具原始叢林的面貌，循行可抵露營區及烤肉區；露營區因乏人使用，已顯荒蕪。若自入口循右側步道上行可抵泰安瀑布；瀑高約 20公尺，自山壁傾瀉而下，聚成一泓清潭，於此戲水，偶見水鳥佇立瀑旁岩石，非常可愛；沿著瀑布旁的環山步道繞行草濫山一周，還可做一次有身心健康的森林浴，享受茂林修竹的自然清新，實為躲避塵囂的理想去處。", "address":"基隆市七堵區泰安路"},{"sightName":"泰安瀑布 ", "zone": "七堵區 ", "category":"風景區", "photoURL":"https://photo.travelking.com.tw/scenery/E97B704A-5067-4713-9C4C-C4D411D75521_e.jpg", "description":"泰安瀑布位於七堵南方的草濫山區，又稱草濫山瀑布，因過去交通不便，反而保留了純樸自然的景色，景致優美清麗，規畫有烤肉區露營區、戲水區及環山步道，為一大眾化的露營、踏青去處。自瀑布入口進入後，分成二條林蔭步道，左側步道沿溪闢建，略具原始叢林的面貌，循行可抵露營區及烤肉區；露營區因乏人使用，已顯荒蕪。若自入口循右側步道上行可抵泰安瀑布；瀑高約 20公尺，自山壁傾瀉而下，聚成一泓清潭，於此戲水，偶見水鳥佇立瀑旁岩石，非常可愛；沿著瀑布旁的環山步道繞行草濫山一周，還可做一次有身心健康的森林浴，享受茂林修竹的自然清新，實為躲避塵囂的理想去處。", "address":"基隆市七堵區泰安路"}]';
+
+        var jp_data;
+
+        var cards_num; // = 5;
+
+        function areabtnClick(zone) {
+
+            jp_data = jp_getData("http://127.0.0.1:8080/sightzone/" + zone); //"https://siriusblackfi.github.io/Homework/json/KeelungData.json"
+
+            if (jp_data == -1) {
+                jp_data = JSON.parse(data_json);
+            }
+
+            var strResult = "";
+
+            document.getElementById("div_row").innerHTML = "";
+
+            for (var i = 0; i < jp_data.length; i++) {
+                var strResult = '<div class="col-md-4"><div class="card"><div class="card-body">';
+                
+                if (jp_data[i]['sightName'] != "")
+                    strResult += '<h5 class="card-title">' + jp_data[i]['sightName'] + '</h5>';
+                if (jp_data[i]['category'] != "")
+                    strResult += '<p class="card-text">' + '景點類別：' + jp_data[i]['category'] + '</p>';
+                if (jp_data[i]['address'] != "")
+                    strResult += '<p class="card-text">' + '地&emsp;&emsp;址：' + '<a href="http://maps.google.com.tw/maps?q=' + jp_data[i]['address'] + '" target="_blank">' + jp_data[i]['address'] + '</a></p>';
+
+                strResult += '<div class="collapse" id="Card_collapse_' + i + '">';
+
+                if (jp_data[i]['description'] != "")
+                    strResult += '<div class="">' + '簡&emsp;&emsp;介：' + jp_data[i]['description'] + '</div>';
+                if (jp_data[i]['photoURL'] != "")
+                    strResult += '<div class=""><img class="img-fluid" src="' + jp_data[i]['photoURL'] + '"></div>';
+
+                strResult += '</div></br>';
+
+                strResult += '<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Card_collapse_' + i + '" aria-expanded="false" aria-controls="#Card_collapse_' + i + '">詳細資訊</button>';
+
+                strResult += '</div></div></div>';
+
+                document.getElementById("div_row").innerHTML += strResult;
+
+            }
+
+            //document.getElementById("div_row").innerHTML = strResult;
+        }
+
+        function jp_getData(url) {
+            try {
+
+                $.ajaxSetup({ cache: false, async: false, dataType: "jsonp" });
+                $.get(url)
+                .success(function (data) {
+                    if (typeof (data) == "string")
+                        cjp_ajaxCallback(data);
+                    else if (typeof (data) == "object") {
+                        cjp_data = data
+                    }
+                })
+                .error(function (e, xhr, settings) {
+                    cjp_data = -1;
+                })
+
+                return cjp_data;
+            }
+            catch (e) {
+                return -1;
+            }
+        }
+
+        function cjp_ajaxCallback(response) {
+
+            //console.log(response);
+            cjp_data = JSON.parse(response);
+
+            //return cjp_data;
+        }
+
+    </script>
+
+    <style>
+		.btn {
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+<body  style="background-color:gray;">
+    <div class="container" style="background-color:#FFFFFF;">
+        <div class="p-3 mb-2 bg-dark text-white">基隆市景點列表</div>
+        <div class="p-2 mb-2" style="background-color:#E0E0E0;">
+            <button type="button" class="btn btn-primary col-4 col-md-2" onclick="areabtnClick('中山區');">中山區</button>
+            <button type="button" class="btn btn-secondary col-4 col-md-2" onclick="areabtnClick('信義區');">信義區</button>
+            <button type="button" class="btn btn-success col-4 col-md-2" onclick="areabtnClick('仁愛區');">仁愛區</button>
+            <button type="button" class="btn btn-danger col-4 col-md-2" onclick="areabtnClick('中正區');">中正區</button>
+            <button type="button" class="btn btn-warning col-4 col-md-2" onclick="areabtnClick('安樂區');">安樂區</button>
+            <button type="button" class="btn btn-info col-4 col-md-2" onclick="areabtnClick('七堵區');">七堵區</button>
+            <button type="button" class="btn btn-light col-4 col-md-2" onclick="areabtnClick('暖暖區');">暖暖區</button>
+        </div>
+
+        <div class="p-2 mb-2" style="background-color:#E0E0E0;">
+            <div class="row" id="div_row">
+              <!--<div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+               <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>-->
+            </div>
+            <!--<div class="row">
+                <div class="col-12 col-lg-4">
+                   <div class="card"><!--style="width: 18rem;"
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="collapse" id="Div1">
+                                <div class="">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">詳細資訊</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card" ><!--style="width: 18rem;"
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="collapse" id="Div2">
+                                <div class="">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">詳細資訊</button>
+                        </div>
+                    </div> 
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card"><!--style="width: 18rem;"
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="collapse" id="Div3">
+                                <div class="">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">詳細資訊</button>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="card" style="width: 25rem;">
+                <!--<img src="" class="card-img-top" alt="..."/>
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">詳細資訊</button>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <!--<img src="" class="card-img-top" alt="..."/>
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <!--<a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <!--<img src="" class="card-img-top" alt="..."/>
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <!--<a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">Column 1</div>
+            <div class="col">Column 2</div>
+            <div class="col">Column 3</div>
+        </div>-->
+    </div>
+
+    <footer>
+        <p>© 2021 Black</p>
+    </footer>
+</body>
+</html>
