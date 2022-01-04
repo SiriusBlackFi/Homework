@@ -64,7 +64,7 @@
         function jp_getData(url) {
             try {
 
-                $.ajaxSetup({ cache: false, async: false, dataType: "jsonp" });
+                $.ajaxSetup({ cache: false, async: false, dataType: "json" });
                 $.get(url)
                 .success(function (data) {
                     if (typeof (data) == "string")
