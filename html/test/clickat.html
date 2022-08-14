@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<title>selenium 學習之click at </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+</style>
+<script type="text/javascript">
+	
+	function clickimg(){
+		
+	   var oDIv = document.getElementById('locimg');
+	   oDIv.onclick = function(event){
+			var e = event || window.event;
+			if(e.clientX<100){
+				var s='e.clientX='+e.clientX+',(e.clientY='+e.clientY+')跳轉到百度！'
+				alert(s)
+				document.getElementById('locresult').innerHTML=s
+			}
+			else{
+				var s='e.clientX='+e.clientX+',(e.clientY='+e.clientY+')跳轉到穀歌！'
+				alert(s)
+				document.getElementById('locresult').innerHTML=s
+			}
+	   }
+	}
+ 
+ 
+ 
+</script>
+</head>
+<h1>selenium test 之 click at </h1>
+<div id="main">
+	<a href="http://music.163.com"><img id="imgleft" src="./leftimg.png" /></a>
+	<a href="http://www.php.cn"><img id="imgg" src="./testimg.png" usemap="#planetmap" /></a>
+	<map name="planetmap" id="planetmap">
+	  <area shape="rect" coords="10,10,50,120" id="a1" href ="https://www.baidu.com/" alt="Venus" />
+	  <area shape="rect" coords="120,140,200,180" href ="https://www.cnblogs.com/" alt="Mercury" />
+	</map>
+ 
+	<br/><br/><br/>
+	<div style="position:absolute; left:20px; top:300px; ">
+		<img id="locimg" src="./locimg.png" /><br/>
+		<span id="locresult"></span>
+	</div>
+</div>
+<script type="text/javascript">
+ 
+	clickimg();
+ 
+ 
+</script>
+</body>
+</html>

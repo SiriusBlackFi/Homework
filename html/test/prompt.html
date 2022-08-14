@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<title>selenium 學習</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+</style>
+<script type="text/javascript">
+	function myFunction(){
+		var x;
+		var person=prompt("請輸入你的名字","Harry Potter");
+		if (person!=null && person!=""){
+			x="你好 " + person + "! 今天感覺如何?";
+			document.getElementById("demo").innerHTML=x;
+		}
+		else{
+			x="收到了cancel";
+			document.getElementById("demo").innerHTML=x;
+		}
+	}
+
+	function myFunction2(){
+		var x;
+		var person=prompt("請輸入你的名字","Harry Potter");
+		if (person!=null && person!=""){
+			x="你好 " + person + "! 今天感覺如何?";
+			document.getElementById("demo2").innerHTML=x;
+		}
+		else{
+			x="收到了cancel";
+			document.getElementById("demo2").innerHTML=x;
+		}
+	}
+</script>
+</head>
+
+ <h1>selenium test </h1>
+<div id="main">
+	   1、點擊觸發prompt！    
+	   <input type="button"  id="prompt1"  onclick="myFunction()" value="顯示prompt" />
+	   <p id="demo"></p>
+
+	   1、點擊觸發prompt！    
+	   <input type="button"  id="prompt2"  onclick="myFunction2()" value="顯示prompt" />
+	   <p id="demo2"></p>
+		   
+</div>
+</body>
+</html>

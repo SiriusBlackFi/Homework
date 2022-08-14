@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<title>selenium 學習之verify系列 </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+</style>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>    
+<script type="text/javascript" src="https://cdn.bootcss.com/soundmanager2/2.97a.20170601/script/soundmanager2.js"></script>
+<script type="text/javascript">
+	function myFunction(){
+		var x;
+		var person=prompt("請輸入你的名字","Harry Potter");
+		if (person!=null && person!=""){
+			x="你好 " + person + "! 今天感覺如何?";
+			document.getElementById("demo").innerHTML=x;
+		}
+		else{
+			x="收到了cancle，嗚嗚嗚~~"+person;
+			document.getElementById("demo").innerHTML=x;
+		}
+	}
+ 
+	function innnerDoms(){
+		var dom='<span id="innerdomid">我是動態插入的！</span>';
+		document.getElementById("innerparentsid").innerHTML=dom;
+	}
+ 
+	function disp_confirm()
+	  {
+	  var r=confirm("Press a button")
+	  if (r==true)
+		{
+			document.getElementById("disp_confirm").innerHTML='點了確定';
+		}
+	  else
+		{
+			document.getElementById("disp_confirm").innerHTML='點了取消';
+		}
+	  }
+ 
+ 
+</script>
+</head>
+ 
+ <h1>selenium test 之 verify系列 </h1>
+<div id="main">
+		<h3>1、verify    </h3>
+		
+ 
+	   <br/><br/>
+	   <h3>2、verify checked、verify not checked  </h3>
+		<input type="checkbox" id="check1" >喜歡霜淇淋(id=check1)<br/>
+		<input type="checkbox" id="check2"  checked="checked">不喜歡霜淇淋(id=check2)<br><br>
+ 
+		<input type="radio" id="check3" name="like"  value="bb">籃球<br>
+		<input type="radio" id="check4" name="like" value="bp" checked>排球<br><br>
+ 
+		<h3>3、verify element present & verify element not present：</h3>
+		<div id='innerparentsid'></div>
+ 
+ 
+		<br/><br/>
+		<h3>4、verify editable、verify not editable   </h3>
+		<input type="text" id="ed_0" /><br/>
+		<input type="text" id="ed_1" readonly /><br/>
+		<input type="text" id="ed_2" disabled="disabled"/><br/>
+		<input type="text" id="ed_3" style="display:none;" value="dis_none"/>
+		<span id="ed_4"></span>
+		
+ 
+		<br/><br/>
+		<h3>5、verify not selected value、verify selected value、verify selected label：   </h3>
+		<select id='dp'>
+			<option value="volvo">Volvo</option>
+			<option value="saab">Saab</option>
+			<option value="mercedes">Mercedes</option>
+			<option value="audi">Audi</option>
+		</select>
+ 
+		<br/><br/>
+		<h3>6、verify not text、verify text：   </h3>
+		<span id="8sp_1">this is span1</span><br/>
+		<input type="text" id="8sp_2" value="434423" /><br/>
+		<p id="8sp_3">this is a p</p>
+ 
+ 
+		<br/><br/>
+		<h3>7、verify title   </h3>
+		get title and match it!
+ 
+ 
+ 
+		<br/><br/>
+		<h3>8、verify value：   </h3>
+		<span id="vv_1">this is span</span><br/>
+		<input type="text" id="vv_2" readonly value="1" /><br/>
+		<input type="text" id="vv_3" value="1" /><br/>
+		<br/><br/>
+ 
+		下拉清單<select id='vv_4'>
+			<option value="volvo">Volvo</option>
+			<option value="saab">Saab</option>
+			<option value="mercedes" selected="selected">Mercedes</option>
+			<option value="audi">Audi</option>
+		</select>
+		<br/><br/>
+ 
+		交通工具複選：
+		<input type="checkbox" id="vv_5" name="vehicle" value="Car"/>Car<br/>
+		<input type="checkbox" id="vv_5x" name="vehicle"/>Car<br/>
+		<input type="checkbox" id="vv_5xx" />Car<br/>
+		<input type="checkbox" id="vv_6" name="vehicle" value="Bike" checked>Bike<br/>
+		<input type="checkbox" id="vv_6x" name="vehicle" checked>Bus<br/><br/>
+	
+		單選顏色：
+		<input type="radio" id="vv_7" name="colors"  value="red">紅色<br>
+		<input type="radio" id="vv_8" name="colors" value="blue" checked>藍色1<br><br>
+ 
+		<input type="radio" id="vv_9" name="colors2">藍色修奧<br>
+		<input type="radio" id="vv_9x" name="colors2" checked>藍色惡魔<br>
+		   
+</div>
+</body>
+</html>

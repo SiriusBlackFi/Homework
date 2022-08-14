@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<title>selenium 學習之run系列 </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+</style>
+<script type="text/javascript">
+	var xx='我是一個全域變數！'
+	var globv=0;
+ 
+	function myAlert(){
+		console.log('exe myalert')
+		document.getElementById("xxx").innerHTML='xxx';
+		alert("你好，我是一個警告框！");
+	}
+ 
+	function alertGlobVar(vv){
+		globv++;
+		alert('傳遞的參數是：'+vv+'，全域變數目前是第'+globv+'次調用!');
+		return globv;
+	}
+ 
+ 
+	function updateGlobvToPage(vv){
+		globv++;
+		document.getElementById("span1").innerHTML='globv='+globv+'   傳遞的參數是：'+vv;
+ 
+//throw   "自訂錯誤"
+ 
+		return globv;
+	}
+ 
+	function localVar(){
+		ss=999;
+		return ss;
+	}
+ 
+ 
+	function asynFun(){
+		let p = new Promise(function(resolve, reject){
+			//做一些非同步作業
+			setTimeout(function(){
+				console.log('執行完成Promise');
+				resolve('要返回的資料可以任何資料例如介面返回資料');
+			}, 2000);
+		});
+		return p;
+	}
+ 
+ 
+ 
+</script>
+</head>
+
+ <h1>selenium test 之 執行腳本系列 </h1>
+<div id="main">
+	<input id='jdjjd' type="button" value="點擊調用alert" onclick="myAlert()"/>	  
+	<span  id="xxx" ></span>
+	<br/><br/>	
+ 
+	show:<span id="span1"></span>
+</div>
+</body>
+ 
+</html>
